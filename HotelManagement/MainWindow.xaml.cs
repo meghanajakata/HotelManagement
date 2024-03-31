@@ -9,7 +9,6 @@ namespace HotelManagement
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<Hotel> Hotels { get; set; }
         public MainWindow()
         {
             InitializeComponent();

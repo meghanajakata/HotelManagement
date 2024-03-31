@@ -5,18 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotelManagement.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <Grid>
-        <ListView ItemsSource="{Binding Hotels}">
+        Title="Hotel Management" Height="450" Width="500" DataContext="{Binding HotelVM}">
+
+    <Grid  Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button HorizontalAlignment="Left" Command="{Binding AddCommand}" ToolTip="Add Hotel">
+                <Image Source="C:\Users\Meghana Jakata\source\repos\HotelManagement\HotelManagement\Image\add.png" Width="20" Height="20" />
+            </Button>
+            <Button Command="{Binding EditCommand}" IsEnabled="{Binding SelectedHotel}" ToolTip="Edit Hotel">
+                <Image Source="C:\Users\Meghana Jakata\source\repos\HotelManagement\HotelManagement\Image\edit.png" Width="20" Height="20" />
+            </Button>
+            <Button Command="{Binding DeleteCommand}" ToolTip="Delete Hotel">
+                <Image Source="C:\Users\Meghana Jakata\source\repos\HotelManagement\HotelManagement\Image\Delete.png" Width="20" Height="20"/>
+            </Button>
+        </StackPanel>
+        
+        <ListView ItemsSource="{Binding Hotels , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedHotel}" Grid.Row="1" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding }" Header="HotelName"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding HotelName}" Header="HotelName"/>
                     <GridViewColumn DisplayMemberBinding="{Binding HotelLocation}" Header="HotelLocation" />
                     <GridViewColumn DisplayMemberBinding="{Binding Rating}" Header="Rating" />
                 </GridView>
             </ListView.View>
         </ListView>
-
     </Grid>
+    
 </Window>
